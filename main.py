@@ -147,14 +147,12 @@ print("Матрица H: \n", H, "\n")
 def codewords_by_sum(example_G, k):
     codewords = set()
 
-    # Перебираем все возможные комбинации строк матрицы G
     for r in range(1, k + 1):
         for comb in combinations(range(k), r):
-            # Суммируем строки и добавляем результат в множество
+
             codeword = np.bitwise_xor.reduce(example_G[list(comb)], axis=0)
             codewords.add(tuple(codeword))
 
-    # Добавляем в множество нулевой вектор
     codewords.add(tuple(np.zeros(example_G.shape[1], dtype=int)))
 
     return np.array(list(codewords))
